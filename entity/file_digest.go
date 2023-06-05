@@ -2,7 +2,7 @@ package entity
 
 import (
 	"fmt"
-	"github.com/m-manu/go-find-duplicates/bytesutil"
+	"github.com/jpconstantineau/go-find-duplicates/bytesutil"
 )
 
 // FileDigest contains properties of a file that makes the file unique to a very high degree of confidence

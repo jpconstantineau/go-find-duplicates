@@ -1,8 +1,8 @@
 # Go Find Duplicates
 
-[![build-and-test](https://github.com/m-manu/go-find-duplicates/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/m-manu/go-find-duplicates/actions/workflows/build-and-test.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/m-manu/go-find-duplicates)](https://goreportcard.com/report/github.com/m-manu/go-find-duplicates)
-[![Go Reference](https://pkg.go.dev/badge/github.com/m-manu/go-find-duplicates.svg)](https://pkg.go.dev/github.com/m-manu/go-find-duplicates)
+[![build-and-test](https://github.com/jpconstantineau/go-find-duplicates/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/jpconstantineau/go-find-duplicates/actions/workflows/build-and-test.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jpconstantineau/go-find-duplicates)](https://goreportcard.com/report/github.com/jpconstantineau/go-find-duplicates)
+[![Go Reference](https://pkg.go.dev/badge/github.com/jpconstantineau/go-find-duplicates.svg)](https://pkg.go.dev/github.com/jpconstantineau/go-find-duplicates)
 [![License](https://img.shields.io/badge/License-Apache%202-blue.svg)](./LICENSE)
 
 ## Introduction
@@ -22,7 +22,7 @@ portable hard drives etc.
     * See: [Go installation instructions](https://go.dev/doc/install)
 2. Run command:
    ```bash
-   go install github.com/m-manu/go-find-duplicates@latest
+   go install github.com/jpconstantineau/go-find-duplicates@latest
    ```
 3. Add following line in your `.bashrc`/`.zshrc` file:
    ```bash
@@ -65,7 +65,7 @@ Flags (all optional):
                             (caution: this makes the scan very slow!)
       --version             Display version (1.6.0) and exit (useful for incorporating this in scripts)
 
-For more details: https://github.com/m-manu/go-find-duplicates
+For more details: https://github.com/jpconstantineau/go-find-duplicates
 ```
 
 ## Running this through a Docker container

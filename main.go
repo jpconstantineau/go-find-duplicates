@@ -15,11 +15,11 @@ import (
 	"time"
 
 	set "github.com/deckarep/golang-set/v2"
-	"github.com/m-manu/go-find-duplicates/bytesutil"
-	"github.com/m-manu/go-find-duplicates/entity"
-	"github.com/m-manu/go-find-duplicates/fmte"
-	"github.com/m-manu/go-find-duplicates/service"
-	"github.com/m-manu/go-find-duplicates/utils"
+	"github.com/jpconstantineau/go-find-duplicates/bytesutil"
+	"github.com/jpconstantineau/go-find-duplicates/entity"
+	"github.com/jpconstantineau/go-find-duplicates/fmte"
+	"github.com/jpconstantineau/go-find-duplicates/service"
+	"github.com/jpconstantineau/go-find-duplicates/utils"
 	flag "github.com/spf13/pflag"
 )
 
@@ -206,7 +206,7 @@ Flags (all optional):
 `)
 	flag.PrintDefaults()
 	fmt.Printf(`
-For more details: https://github.com/m-manu/go-find-duplicates
+For more details: https://github.com/jpconstantineau/go-find-duplicates
 `)
 	os.Exit(exitCodeSuccess)
 }

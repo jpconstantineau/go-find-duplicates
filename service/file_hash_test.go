@@ -1,7 +1,7 @@
 package service
 
 import (
-	"github.com/m-manu/go-find-duplicates/bytesutil"
+	"github.com/jpconstantineau/go-find-duplicates/bytesutil"
 	"github.com/stretchr/testify/assert"
 	"path/filepath"
 	"runtime"

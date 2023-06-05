@@ -8,9 +8,9 @@ import (
 	"hash/crc32"
 	"os"
 
-	"github.com/m-manu/go-find-duplicates/bytesutil"
-	"github.com/m-manu/go-find-duplicates/entity"
-	"github.com/m-manu/go-find-duplicates/utils"
+	"github.com/jpconstantineau/go-find-duplicates/bytesutil"
+	"github.com/jpconstantineau/go-find-duplicates/entity"
+	"github.com/jpconstantineau/go-find-duplicates/utils"
 )
 
 const (

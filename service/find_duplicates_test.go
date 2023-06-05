@@ -2,9 +2,9 @@ package service
 
 import (
 	set "github.com/deckarep/golang-set/v2"
-	"github.com/m-manu/go-find-duplicates/entity"
-	"github.com/m-manu/go-find-duplicates/fmte"
-	"github.com/m-manu/go-find-duplicates/utils"
+	"github.com/jpconstantineau/go-find-duplicates/entity"
+	"github.com/jpconstantineau/go-find-duplicates/fmte"
+	"github.com/jpconstantineau/go-find-duplicates/utils"
 	"github.com/stretchr/testify/assert"
 	"path/filepath"
 	"runtime"
