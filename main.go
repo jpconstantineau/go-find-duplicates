@@ -7,6 +7,13 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"os"
+	"path/filepath"
+	"runtime"
+	"runtime/debug"
+	"strings"
+	"time"
+
 	set "github.com/deckarep/golang-set/v2"
 	"github.com/m-manu/go-find-duplicates/bytesutil"
 	"github.com/m-manu/go-find-duplicates/entity"
@@ -14,12 +21,6 @@ import (
 	"github.com/m-manu/go-find-duplicates/service"
 	"github.com/m-manu/go-find-duplicates/utils"
 	flag "github.com/spf13/pflag"
-	"os"
-	"path/filepath"
-	"runtime"
-	"runtime/debug"
-	"strings"
-	"time"
 )
 
 // Exit codes for this program
@@ -36,7 +37,7 @@ const (
 	exitCodeWritingToReportFileFailed
 )
 
-const version = "1.7.0"
+const version = "1.7.1"
 
 //go:embed default_exclusions.txt
 var defaultExclusionsStr string
@@ -49,6 +50,7 @@ var flags struct {
 	getParallelism   func() int
 	isThorough       func() bool
 	getVersion       func() bool
+	getFilename      func() string
 }
 
 func setupExclusionsOpt() {
@@ -121,6 +123,13 @@ func setupParallelismOpt() {
 			return 1
 		}
 		return int(*parallelismPtr)
+	}
+}
+
+func setupOutputFilenameOpt() {
+	outputFilenamePtr := flag.StringP("filename", "f", "", "report filename")
+	flags.getFilename = func() string {
+		return strings.ToLower(strings.TrimSpace(*outputFilenamePtr))
 	}
 }
 
@@ -211,6 +220,7 @@ func setupFlags() {
 	setupThoroughOpt()
 	setupUsage()
 	setupVersionOpt()
+	setupOutputFilenameOpt()
 }
 
 func generateRunID() string {
@@ -222,11 +232,11 @@ func createReportFileIfApplicable(runID string, outputMode string) (reportFileNa
 	case entity.OutputModeStdOut:
 		return
 	case entity.OutputModeCsvFile:
-		reportFileName = fmt.Sprintf("./duplicates_%s.csv", runID)
+		reportFileName = fmt.Sprintf("./%s.csv", runID)
 	case entity.OutputModeTextFile:
-		reportFileName = fmt.Sprintf("./duplicates_%s.txt", runID)
+		reportFileName = fmt.Sprintf("./%s.txt", runID)
 	case entity.OutputModeJSON:
-		reportFileName = fmt.Sprintf("./duplicates_%s.json", runID)
+		reportFileName = fmt.Sprintf("./%s.json", runID)
 	default:
 		panic("Bug in code")
 	}
@@ -255,7 +265,11 @@ func main() {
 	}
 	directories := readDirectories()
 	outputMode := flags.getOutputMode()
-	reportFileName := createReportFileIfApplicable(runID, outputMode)
+	filename := flags.getFilename()
+	if filename == "" {
+		filename = "duplicates_" + runID
+	}
+	reportFileName := createReportFileIfApplicable(filename, outputMode)
 	duplicates, duplicateTotalCount, savingsSize, allFiles, fdErr :=
 		service.FindDuplicates(directories, flags.getExcludedFiles(), flags.getMinSize(),
 			flags.getParallelism(), flags.isThorough())

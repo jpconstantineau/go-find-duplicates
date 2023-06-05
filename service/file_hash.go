@@ -1,15 +1,16 @@
 package service
 
 import (
-	"crypto/sha256"
+	"crypto/sha512"
 	"encoding/hex"
 	"fmt"
-	"github.com/m-manu/go-find-duplicates/bytesutil"
-	"github.com/m-manu/go-find-duplicates/entity"
-	"github.com/m-manu/go-find-duplicates/utils"
 	"hash"
 	"hash/crc32"
 	"os"
+
+	"github.com/m-manu/go-find-duplicates/bytesutil"
+	"github.com/m-manu/go-find-duplicates/entity"
+	"github.com/m-manu/go-find-duplicates/utils"
 )
 
 const (
@@ -34,7 +35,7 @@ func GetDigest(path string, isThorough bool) (entity.FileDigest, error) {
 }
 
 // fileHash calculates the hash of the file provided.
-// If isThorough is true, then it uses SHA256 of the entire file.
+// If isThorough is true, then it uses SHA512 of the entire file.
 // Otherwise, it uses CRC32 of "crucial bytes" of the file.
 func fileHash(path string, isThorough bool) (string, error) {
 	fileInfo, statErr := os.Lstat(path)
@@ -61,7 +62,7 @@ func fileHash(path string, isThorough bool) (string, error) {
 	}
 	var h hash.Hash
 	if isThorough {
-		h = sha256.New()
+		h = sha512.New()
 	} else {
 		h = crc32.NewIEEE()
 	}
