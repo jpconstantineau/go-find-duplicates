@@ -1,4 +1,4 @@
-module github.com/m-manu/go-find-duplicates
+module github.com/jpconstantineau/go-find-duplicates
 
 go 1.19
 
